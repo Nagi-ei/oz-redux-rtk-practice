@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
-import data from '../assets/data';
 import { cartSlice } from '../reducers/cartReducer';
+import data from '../assets/data';
 
 export default function Cart() {
   const menu = useSelector((state) => state.menu);
