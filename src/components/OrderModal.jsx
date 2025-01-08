@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import data from '../assets/data';
+// import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { addItem } from '../reducers/cartReducer';
 
-function OrderModal({ modalMenu, setModalOn, cart, setCart }) {
+function OrderModal({ modalMenu, setModalOn }) {
+  // const cart = useSelector((storeState) => storeState.cartReducer);
+  const dispatch = useDispatch();
   const [options, setOptions] = useState({ 온도: 0, 진하기: 0, 사이즈: 0 });
   const [quantity, setQuantity] = useState(1);
   const itemOptions = data.options;
-  console.log(options);
+
   return (
     <>
       {modalMenu ? (
@@ -42,7 +47,7 @@ function OrderModal({ modalMenu, setModalOn, cart, setCart }) {
               </div>
               <button
                 onClick={() => {
-                  setCart([...cart, { options, quantity, id: modalMenu.id }]);
+                  dispatch(addItem(options, quantity, modalMenu.id));
                   setModalOn(false);
                 }}
               >
